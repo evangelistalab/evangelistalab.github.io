@@ -62,3 +62,4 @@ document.addEventListener("DOMContentLoaded", function() {
     head.appendChild(preconnect2);
     head.appendChild(fontLink);
 });
+
