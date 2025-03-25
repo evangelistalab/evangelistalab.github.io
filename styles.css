@@ -84,6 +84,7 @@ body {
     background-color: #f5f5f5;
     margin: auto;
     font-size: 20px;
+    border-radius: 50px;
 
     h1 {
         color: #000000;
