@@ -210,3 +210,79 @@ body {
     font-weight: 700;
     font-style: italic;
 }
+
+.alumni-table {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+
+.alumni-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.alumni-table th {
+    background-color: #f2a900;
+    color: #000000;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.alumni-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.alumni-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.alumni-table .section-header {
+    background-color: #0c2340;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    padding: 15px;
+}
+
+.alumni-table a {
+    color: #f2a900;
+    text-decoration: none;
+}
+
+.alumni-table a:hover {
+    color: #b58500;
+    text-decoration: none;
+}
+
+.links-cell {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.links-cell a {
+    display: inline-block;
+    margin: 0 5px;
+    font-size: 1.2em;
+    transition: transform 0.2s ease;
+}
+
+.links-cell a:hover {
+    transform: scale(1.2);
+}
+
+.links-cell a[title="Google Scholar"] {
+    color: #4285F4;
+}
+
+.links-cell a[title="LinkedIn"] {
+    color: #0077B5;
+}
+
+.links-cell a[title="Personal Website"] {
+    color: #f2a900;
+}
