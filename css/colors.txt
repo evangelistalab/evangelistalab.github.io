@@ -1,0 +1,6 @@
+Color palette
+
+#f2a900; Yellow
+#b58500; Gold
+#007dba; Light blue
+#0c2340; Dark blue

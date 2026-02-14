@@ -15,6 +15,7 @@ function createNavBar() {
             <a href="research.html">Research</a>
             <a href="talks.html">Talks</a>
             <a href="publications.html">Publications</a>
+            <a href="software.html">Software</a>
             <a href="contact.html">Contact</a>
         </nav>
     `;
