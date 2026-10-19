@@ -1,7 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     const header = document.getElementById('main-header');
     header.innerHTML = createNavBar() + createHeader('The <strong>Evangelista</strong> Lab');
+    document.body.insertAdjacentHTML('beforeend', createFooter());
 });
+
+function createFooter() {
+    const year = new Date().getFullYear();
+    return `
+        <footer>
+            <p>Evangelista Lab · Department of Chemistry, Emory University<br>
+                1515 Dickey Dr. NE, Atlanta, GA 30322</p>
+            <p>© ${year} Evangelista Lab</p>
+        </footer>
+    `;
+}
 
 function createHeader(title) {
     return `<h1>The <strong>Evangelista</strong> Lab</h1>`;
