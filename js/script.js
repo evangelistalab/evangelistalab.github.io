@@ -26,6 +26,7 @@ function createNavBar() {
         ['alumni.html', 'Alumni'],
         ['research.html', 'Research'],
         ['talks.html', 'Talks'],
+        ['teaching.html', 'Teaching'],
         ['publications.html', 'Publications'],
         ['software.html', 'Software'],
         ['contact.html', 'Contact'],
