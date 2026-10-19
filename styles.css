@@ -116,7 +116,7 @@ body {
     background-color: #f5f5f5;
     margin: auto;
     font-size: 18px;
-    border-radius: 50px;
+    border-radius: 10px;
 
     h1 {
         color: #000000;
@@ -138,6 +138,14 @@ body {
     flex-basis: 20%;
     margin: auto;
     padding: 10px;
+}
+
+.people_img img {
+    display: block;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .people_info {
