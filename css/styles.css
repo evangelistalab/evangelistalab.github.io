@@ -71,6 +71,55 @@ main h1 {
     text-align: center;
 }
 
+/* Home page hero: text next to the interactive orbital viewer */
+.hero {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 30px;
+    align-items: center;
+    width: 90%;
+    max-width: 960px;
+    margin: 30px auto 10px;
+}
+
+.hero-text h1 {
+    font-size: 40px;
+    margin: 0 0 10px;
+}
+
+.hero-viewer {
+    margin: 0;
+}
+
+.hero-canvas {
+    aspect-ratio: 1;
+    border-radius: var(--card-radius);
+    background: radial-gradient(circle at 50% 45%, #ffffff 0%, #eef2f6 70%);
+}
+
+.hero-canvas canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    touch-action: pan-y;
+}
+
+.hero-viewer figcaption {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 15px;
+    color: #4a4a4a;
+}
+
+.hero-orbital-label {
+    transition: opacity 0.4s ease;
+}
+
+.hero-orbital-label.fading {
+    opacity: 0;
+}
+
 /* Never let images overflow the screen */
 main img {
     max-width: 100%;
@@ -560,5 +609,20 @@ footer p {
 
     .alumni-table {
         padding: 20px 0;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        margin-top: 15px;
+    }
+
+    .hero-text h1 {
+        font-size: 30px;
+    }
+
+    .hero-viewer {
+        width: 100%;
+        max-width: 340px;
+        justify-self: center;
     }
 }
