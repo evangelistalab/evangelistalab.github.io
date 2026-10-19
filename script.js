@@ -8,15 +8,29 @@ function createHeader(title) {
 }
 
 function createNavBar() {
+    const pages = [
+        ['index.html', 'Home'],
+        ['people.html', 'People'],
+        ['alumni.html', 'Alumni'],
+        ['research.html', 'Research'],
+        ['talks.html', 'Talks'],
+        ['publications.html', 'Publications'],
+        ['software.html', 'Software'],
+        ['contact.html', 'Contact'],
+    ];
+
+    // Highlight the current page; "/" is the home page
+    const current = window.location.pathname.split('/').pop() || 'index.html';
+
+    const links = pages.map(([href, label]) =>
+        href === current
+            ? `<a href="${href}" class="active" aria-current="page">${label}</a>`
+            : `<a href="${href}">${label}</a>`
+    ).join('\n            ');
+
     return `
         <nav id="main-nav">
-            <a href="index.html">Home</a>
-            <a href="people.html">People</a>
-            <a href="research.html">Research</a>
-            <a href="talks.html">Talks</a>
-            <a href="publications.html">Publications</a>
-            <a href="software.html">Software</a>
-            <a href="contact.html">Contact</a>
+            ${links}
         </nav>
     `;
 }
