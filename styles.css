@@ -165,12 +165,10 @@ body {
     h1 {
         color: #000000;
         font-size: 30px;
-        height: 30px;
     }
 
     h2 {
         font-size: 24px;
-        height: 24px;
     }
 }
 
@@ -407,5 +405,20 @@ body {
     .software-table th,
     .software-table td {
         padding: 10px;
+    }
+}
+
+/* Stack card contents vertically on narrow screens */
+@media (max-width: 700px) {
+    .people,
+    .research {
+        flex-direction: column;
+    }
+
+    .people_img,
+    .people_info,
+    .research_body,
+    .research_sidebar {
+        flex-basis: auto;
     }
 }
