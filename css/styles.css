@@ -30,7 +30,7 @@ main {
     }
 
     a:hover {
-        color: #0c2340;
+        color: #006a9e;
         text-decoration: underline;
     }
 }
@@ -121,8 +121,8 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #b58500;
-    color: black;
+    background-color: #006a9e;
+    color: #ffffff;
 }
 
 nav a.active {
@@ -131,7 +131,7 @@ nav a.active {
 }
 
 nav a.active:hover {
-    color: black;
+    color: #ffffff;
 }
 
 body {
@@ -344,7 +344,7 @@ body {
 }
 
 .alumni-table a:hover {
-    color: #0c2340;
+    color: #006a9e;
     text-decoration: underline;
 }
 
@@ -360,8 +360,10 @@ body {
     transition: transform 0.2s ease;
 }
 
-.links-cell a:hover {
+.links-cell a:hover,
+.links-cell a[title]:hover {
     transform: scale(1.2);
+    color: #006a9e;
 }
 
 .links-cell a[title="Google Scholar"] {
