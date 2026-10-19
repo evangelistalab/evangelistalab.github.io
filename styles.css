@@ -18,20 +18,21 @@ main {
     margin: auto;
 
     a {
-        color: #f2a900;
+        color: #006a9e;
         font-weight: 600;
         text-decoration: none;
     }
 
     a:hover {
-        color: #b58500;
+        color: #0c2340;
+        text-decoration: underline;
     }
 }
 
 main h1 {
     font-weight: 600;
     font-size: 36px;
-    color: #f2a900;
+    color: #0c2340;
 }
 
 .body {
@@ -262,13 +263,13 @@ body {
 }
 
 .alumni-table a {
-    color: #f2a900;
+    color: #006a9e;
     text-decoration: none;
 }
 
 .alumni-table a:hover {
-    color: #b58500;
-    text-decoration: none;
+    color: #0c2340;
+    text-decoration: underline;
 }
 
 .links-cell {
@@ -296,7 +297,7 @@ body {
 }
 
 .links-cell a[title="Personal Website"] {
-    color: #f2a900;
+    color: #b58500;
 }
 .software-table-wrap {
     width: 90%;
