@@ -1,83 +1,114 @@
-html {
-    box-sizing: border-box;
+:root {
+    /* Corner rounding for cards, tables, videos and the contact box */
+    --card-radius: 12px;
 }
 
-*,
-*:before,
-*:after {
-    box-sizing: inherit;
-}
-
-body {
+header {
+    background-color: #f2a900;
+    background-size: auto;
+    padding: 0px;
+    text-align: center;
     font-family: "Titillium Web", sans-serif;
-    background: #eeeeee;
     font-size: 24px;
+    color: #000000;
+}
+
+header h1 {
+    font-weight: 300;
+}
+
+main {
+    font-family: "Titillium Web", sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: auto;
 
     a {
-        color: #f2a900;
+        color: #006a9e;
         font-weight: 600;
         text-decoration: none;
     }
 
     a:hover {
-        color: #b58500;
-        font-weight: 900;
+        color: #0c2340;
+        text-decoration: underline;
     }
 }
 
-header {
-    text-align: center;
-    /* background-color: #f2a900; */
-    /* background-size: auto;
-    padding: 0px;
-    color: #000000; */
+main h1,
+main h2,
+main h3 {
+    line-height: 1.2;
 }
 
-h1 {
-    font-weight: 200;
-}
-
-h2 {
-    font-weight: 300;
-}
-
-h3 {
-    font-weight: 300;
-}
-
-footer {
-    background-color: #0c2340;
-    color: #ffffff;
-    text-align: center;
-    padding: 10px;
-    font-size: 22px;
-}
-
-main {
-    margin: auto;
+main h1 {
+    font-weight: 600;
+    font-size: 36px;
+    color: #0c2340;
 }
 
 .body {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    font-size: 24px;
+    font-size: 18px;
+    font-family: "Titillium Web", sans-serif;
+    max-width: 960px;
     margin: auto;
 }
 
+.body p {
+    max-width: 70ch;
+}
+
+/* Home page: center the text column so it lines up with the video */
+.home .body p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive 16:9 video embed, as wide as the text column */
+.video {
+    width: min(70ch, 100%);
+    aspect-ratio: 16 / 9;
+    margin: 20px 0 0;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+}
+
+.home .video {
+    margin: 20px auto 0;
+}
+
+.video iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Same width as the home page text column and video */
 .highlight {
+    box-sizing: border-box;
+    width: min(70ch, 90%);
     text-align: center;
     color: #ffffff;
     background-color: #007dba;
-    padding: 1px;
-    font-size: 28px;
-    margin: auto;
+    padding: 4px 20px;
+    font-size: 18px;
+    font-family: "Titillium Web", sans-serif;
+    margin: 10px auto;
+    border-radius: var(--card-radius);
+
+    p {
+        font-size: 20px;
+    }
 }
 
 nav {
     background-color: #0c2340;
     text-align: left;
     padding: 10px 10px;
+    font-family: "Titillium Web", sans-serif;
     font-weight: 600;
 }
 
@@ -94,6 +125,15 @@ nav a:hover {
     color: black;
 }
 
+nav a.active {
+    color: #f2a900;
+    box-shadow: inset 0 -3px 0 #f2a900;
+}
+
+nav a.active:hover {
+    color: black;
+}
+
 body {
     margin: auto;
 }
@@ -101,9 +141,12 @@ body {
 .people {
     display: flex;
     width: 90%;
+    max-width: 960px;
     background-color: #f5f5f5;
     margin: auto;
-    font-size: 20px;
+    font-size: 18px;
+    border: 1px solid #e3e3e3;
+    border-radius: var(--card-radius);
 
     h1 {
         color: #000000;
@@ -127,6 +170,14 @@ body {
     padding: 10px;
 }
 
+.people_img img {
+    display: block;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .people_info {
     display: block;
     flex-basis: 70%;
@@ -135,20 +186,21 @@ body {
 
 .research {
     width: 90%;
+    max-width: 960px;
     background-color: #f5f5f5;
     margin: auto;
     display: flex;
-    font-size: 20px;
+    font-size: 18px;
+    border: 1px solid #e3e3e3;
+    border-radius: var(--card-radius);
 
     h1 {
         color: #000000;
         font-size: 30px;
-        height: 30px;
     }
 
     h2 {
         font-size: 24px;
-        height: 24px;
     }
 }
 
@@ -161,7 +213,12 @@ body {
 .research_sidebar {
     display: block;
     flex-basis: 30%;
-    padding: 10px;
+    align-self: flex-start;
+    margin: 20px 15px;
+    padding: 0 0 0 15px;
+    border-left: 3px solid #f2a900;
+    font-size: 16px;
+    color: #4a4a4a;
 }
 
 .titillium-web-extralight {
@@ -228,4 +285,212 @@ body {
     font-family: "Titillium Web", sans-serif;
     font-weight: 700;
     font-style: italic;
+}
+
+.alumni-table {
+    width: 90%;
+    max-width: 960px;
+    margin: auto;
+    padding: 20px;
+    /* Let the table scroll sideways when it is wider than the screen */
+    overflow-x: auto;
+}
+
+.alumni-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.alumni-table th {
+    background-color: #f2a900;
+    color: #000000;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.alumni-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Keep "2019 - 2024" on one line */
+.alumni-table td:nth-child(2) {
+    white-space: nowrap;
+}
+
+.alumni-table tr:hover {
+    background-color: #ececec;
+}
+
+.alumni-table .section-header {
+    background-color: #0c2340;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    padding: 15px;
+}
+
+.alumni-table a {
+    color: #006a9e;
+    text-decoration: none;
+}
+
+.alumni-table a:hover {
+    color: #0c2340;
+    text-decoration: underline;
+}
+
+.links-cell {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.links-cell a {
+    display: inline-block;
+    margin: 0 5px;
+    font-size: 1.2em;
+    transition: transform 0.2s ease;
+}
+
+.links-cell a:hover {
+    transform: scale(1.2);
+}
+
+.links-cell a[title="Google Scholar"] {
+    color: #4285F4;
+}
+
+.links-cell a[title="LinkedIn"] {
+    color: #0077B5;
+}
+
+.links-cell a[title="Personal Website"] {
+    color: #b58500;
+}
+.software-table-wrap {
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto 30px;
+}
+
+.software-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    font-size: 18px;
+}
+
+.software-table th {
+    background-color: #0c2340;
+    color: #ffffff;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.software-table td {
+    padding: 12px;
+    border-bottom: 1px solid #d6d6d6;
+    vertical-align: middle;
+}
+
+.software-table tr:hover {
+    background-color: #ececec;
+}
+
+.software-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.software-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.2px;
+}
+
+.icon-vibemol {
+    background-color: #007dba;
+}
+
+.icon-forte {
+    background-color: #b58500;
+}
+
+.icon-forte2 {
+    background-color: #5b4c9a;
+}
+
+.icon-qforte {
+    background-color: #2b9348;
+}
+
+.icon-wickd {
+    background-color: #bc4749;
+}
+
+@media (max-width: 800px) {
+    .software-table {
+        font-size: 16px;
+    }
+
+    .software-table th,
+    .software-table td {
+        padding: 10px;
+    }
+}
+
+/* Stack card contents vertically on narrow screens */
+@media (max-width: 700px) {
+    .people,
+    .research {
+        flex-direction: column;
+    }
+
+    .people_img,
+    .people_info,
+    .research_body,
+    .research_sidebar {
+        flex-basis: auto;
+    }
+
+    nav a {
+        font-size: 18px;
+        padding: 0 7px;
+    }
+
+    /* Keep the title on one line and trim the space below the banner */
+    header h1 {
+        font-size: 34px;
+        margin: 12px 0;
+    }
+
+    .body {
+        padding: 5px 20px;
+    }
+
+    .alumni-table {
+        padding: 20px 0;
+    }
 }
