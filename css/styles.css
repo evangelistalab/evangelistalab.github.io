@@ -201,6 +201,19 @@ nav a.active:hover {
     color: #ffffff;
 }
 
+/* GitHub icon sits at the right end of the nav bar */
+.nav-github {
+    float: right;
+}
+
+.nav-github svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+    margin: 5px 0 1px;
+    fill: currentColor;
+}
+
 /* Push the footer to the bottom of the window on short pages */
 body {
     margin: auto;
@@ -593,8 +606,13 @@ footer p {
     }
 
     nav a {
-        font-size: 18px;
-        padding: 0 7px;
+        font-size: 17px;
+        padding: 0 6px;
+    }
+
+    .nav-github svg {
+        width: 20px;
+        height: 20px;
     }
 
     /* Keep the title on one line and trim the space below the banner */
