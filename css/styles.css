@@ -4,17 +4,7 @@
 }
 
 header {
-    background-color: #f2a900;
-    background-size: auto;
-    padding: 0px;
-    text-align: center;
     font-family: "Titillium Web", sans-serif;
-    font-size: 24px;
-    color: #000000;
-}
-
-header h1 {
-    font-weight: 300;
 }
 
 main {
@@ -171,20 +161,48 @@ main img {
     }
 }
 
+/* Single header bar: lab name on the left, page links, GitHub icon on the right */
 nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 16px;
     background-color: #0c2340;
-    text-align: left;
-    padding: 10px 10px;
+    border-bottom: 4px solid #f2a900;
+    padding: 10px 20px;
     font-family: "Titillium Web", sans-serif;
     font-weight: 600;
 }
 
 nav a {
     color: rgb(255, 255, 255);
-    padding: 0px 10px;
+    padding: 2px 9px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     display: inline-block;
+}
+
+nav .brand {
+    margin-right: auto;
+    padding: 0;
+    font-size: 28px;
+    font-weight: 300;
+    white-space: nowrap;
+}
+
+nav .brand strong {
+    font-weight: 600;
+}
+
+nav .brand:hover {
+    background: none;
+    color: #f2a900;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 2px;
 }
 
 nav a:hover {
@@ -201,16 +219,47 @@ nav a.active:hover {
     color: #ffffff;
 }
 
-/* GitHub icon sits at the right end of the nav bar */
-.nav-github {
-    float: right;
+nav .nav-github {
+    padding: 4px 8px;
+}
+
+/* Wide screens: everything fits on one row, so keep the bar on screen while
+   scrolling and slim it down once the page has scrolled */
+@media (min-width: 1101px) {
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    nav,
+    nav .brand {
+        transition: padding 0.2s ease, font-size 0.2s ease;
+    }
+
+    header.scrolled nav {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    header.scrolled nav .brand {
+        font-size: 22px;
+    }
+}
+
+/* Narrower screens: lab name and GitHub on the first row, page links below */
+@media (max-width: 1100px) {
+    .nav-links {
+        order: 2;
+        flex-basis: 100%;
+        margin-left: -9px;
+    }
 }
 
 .nav-github svg {
     display: block;
     width: 22px;
     height: 22px;
-    margin: 5px 0 1px;
     fill: currentColor;
 }
 
@@ -605,20 +654,27 @@ footer p {
         flex-basis: auto;
     }
 
+    nav {
+        gap: 4px 8px;
+        padding: 8px 12px;
+    }
+
+    nav .brand {
+        font-size: 22px;
+    }
+
     nav a {
-        font-size: 17px;
-        padding: 0 6px;
+        font-size: 16px;
+        padding: 2px 6px;
+    }
+
+    .nav-links {
+        margin-left: -6px;
     }
 
     .nav-github svg {
         width: 20px;
         height: 20px;
-    }
-
-    /* Keep the title on one line and trim the space below the banner */
-    header h1 {
-        font-size: 34px;
-        margin: 12px 0;
     }
 
     .body {
