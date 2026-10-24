@@ -357,6 +357,26 @@ footer p {
     }
 }
 
+/* Software page: logo at the top of each package's sidebar, quick links under the intro */
+/* Logos are drawn on a standard 600 × 200 canvas; show them all in the same 3:1 frame */
+.software-logo {
+    display: block;
+    width: 100%;
+    max-width: 170px;
+    aspect-ratio: 3 / 1;
+    object-fit: contain;
+    margin: 0 0 12px;
+}
+
+.software-index {
+    font-weight: 600;
+}
+
+/* Keep jump-link targets clear of the sticky header */
+.research[id] {
+    scroll-margin-top: 70px;
+}
+
 .course {
     box-sizing: border-box;
     width: 90%;
