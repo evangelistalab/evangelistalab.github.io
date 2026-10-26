@@ -436,6 +436,7 @@ footer p {
 }
 
 .pub {
+    position: relative;
     padding: 6px 0 12px;
 }
 
@@ -471,6 +472,37 @@ main .pub-title:hover {
     font-size: 14px;
     line-height: 1.45;
     color: #555555;
+}
+
+/* With a mouse, the digest is a card that fades in below the paper while its
+   title is hovered (or focused from the keyboard); touch screens keep it inline */
+@media (hover: hover) {
+    .pub-digest {
+        position: absolute;
+        top: calc(100% - 10px);
+        left: 0;
+        z-index: 5;
+        margin: 0;
+        padding: 10px 14px;
+        background: #ffffff;
+        border: 1px solid #e3e3e3;
+        border-left: 4px solid var(--theme-color, #0c2340);
+        border-radius: 8px;
+        box-shadow: 0 6px 18px rgba(12, 35, 64, 0.15);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-6px);
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+        pointer-events: none;
+    }
+
+    .pub-title:hover ~ .pub-digest,
+    .pub-title:focus-visible ~ .pub-digest {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition: opacity 0.2s ease 0.15s, transform 0.2s ease 0.15s, visibility 0s linear 0.15s;
+    }
 }
 
 .pub-tag {

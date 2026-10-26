@@ -84,6 +84,7 @@ function renderList(papers) {
         }
         const item = el('li', { class: 'pub' });
         item.dataset.themes = p.themes.join(' ');
+        item.style.setProperty('--theme-color', themeById[p.themes[0]].color);
         const title = el('a', { class: 'pub-title', href: `https://doi.org/${p.doi}`, target: '_blank', rel: 'noreferrer noopener' }, p.title);
         const venue = el('span', { class: 'pub-venue' }, `${p.venue}${p.preprint ? ' (preprint)' : ''}, ${p.year}`);
         const tags = el('span', { class: 'pub-tags' });
@@ -124,14 +125,15 @@ function drawGraph(papers) {
     papers.forEach((p, i) => {
         const y = ys[i];
         const main = p.themes[0];
-        // Merges: a curve from each secondary branch into the paper's dot
+        // Connections: a horizontal line from the paper's dot to each of its other
+        // themes, ending in a small open circle on that theme's branch
         for (const other of p.themes.slice(1)) {
             const xs = laneX[other], xp = laneX[main];
-            svg.append(svgEl('path', {
-                d: `M ${xs} ${y - 16} C ${xs} ${y - 4}, ${xp} ${y - 8}, ${xp} ${y}`,
-                fill: 'none', stroke: themeById[other].color, 'stroke-width': 2,
+            svg.append(svgEl('line', {
+                x1: xp, x2: xs, y1: y, y2: y,
+                stroke: themeById[other].color, 'stroke-width': 2, 'stroke-linecap': 'round',
             }));
-            svg.append(svgEl('circle', { cx: xs, cy: y - 16, r: 3, fill: '#ffffff', stroke: themeById[other].color, 'stroke-width': 2 }));
+            svg.append(svgEl('circle', { cx: xs, cy: y, r: 3.5, fill: '#ffffff', stroke: themeById[other].color, 'stroke-width': 2 }));
         }
         const dot = svgEl('circle', { cx: laneX[main], cy: y, r: 5.5, fill: themeById[main].color, stroke: '#ffffff', 'stroke-width': 2 });
         dot.append(svgEl('title', {}));
