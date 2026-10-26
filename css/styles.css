@@ -409,6 +409,44 @@ footer p {
     min-height: 1.6em;
 }
 
+.pub-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* Compact / Detailed switch; only shown where the compact view applies */
+.pub-view-toggle {
+    display: none;
+    flex-shrink: 0;
+    border: 2px solid #0c2340;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.pub-view-toggle button {
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 3px 14px;
+    border: 0;
+    background: #ffffff;
+    color: #0c2340;
+    cursor: pointer;
+}
+
+.pub-view-toggle button[aria-pressed="true"] {
+    background: #0c2340;
+    color: #ffffff;
+}
+
+@media (hover: hover) and (min-width: 701px) {
+    .pub-view-toggle {
+        display: flex;
+    }
+}
+
 .pub-graph {
     --lanes-width: 160px;
     position: relative;
@@ -428,6 +466,10 @@ footer p {
     line-height: 1.5;
 }
 
+/* Each paper is a row: a one-line summary (.pub-line) and a details card
+   (.pub-card) with authors, citation, themes, and digest. The base layout
+   stacks everything (phones, touch screens); the compact layout below turns
+   each paper into a single line with the card shown on hover. */
 .pub-year {
     margin: 22px 0 6px;
     font-size: 22px;
@@ -449,8 +491,13 @@ main .pub-title:hover {
     color: #006a9e;
 }
 
+.pub-journal,
+.pub-card-title {
+    display: none;
+}
+
 .pub-authors,
-.pub-venue {
+.pub-citation {
     color: #4a4a4a;
 }
 
@@ -466,6 +513,16 @@ main .pub-title:hover {
     vertical-align: 1px;
 }
 
+.pub-tag {
+    --chip-color: #6c757d;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0 7px;
+    border-radius: 999px;
+    color: #ffffff;
+    background: var(--chip-color);
+}
+
 .pub-digest {
     max-width: 75ch;
     margin: 4px 0 0;
@@ -474,16 +531,67 @@ main .pub-title:hover {
     color: #555555;
 }
 
-/* With a mouse, the digest is a card that fades in below the paper while its
-   title is hovered (or focused from the keyboard); touch screens keep it inline */
-@media (hover: hover) {
-    .pub-digest {
+/* Compact "git log --oneline" layout, used on wide screens with a mouse when
+   the page toggle is set to Compact (.is-compact on .pub-graph) */
+@media (hover: hover) and (min-width: 701px) {
+    .is-compact .pub-year {
+        margin: 10px 0 2px;
+        padding-top: 2px;
+        border-top: 1px solid #e3e3e3;
+        font-size: 13px;
+        color: #6c757d;
+    }
+
+    .is-compact .pub {
+        padding: 0;
+    }
+
+    .is-compact .pub-line {
+        display: flex;
+        align-items: baseline;
+        gap: 16px;
+        padding: 3px 6px;
+        border-radius: 4px;
+    }
+
+    .is-compact .pub:hover .pub-line {
+        background: #f5f5f5;
+    }
+
+    main .is-compact .pub-title {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 16px;
+    }
+
+    .is-compact .pub-journal {
+        display: block;
+        flex-shrink: 0;
+        font-size: 14px;
+        font-style: italic;
+        color: #6c757d;
+        white-space: nowrap;
+    }
+
+    .is-compact .pub-card-title {
+        display: block;
+        font-weight: 600;
+        color: #0c2340;
+        margin-bottom: 4px;
+    }
+
+    .is-compact .pub-card {
         position: absolute;
-        top: calc(100% - 10px);
+        top: calc(100% + 2px);
         left: 0;
         z-index: 5;
-        margin: 0;
+        width: min(75ch, 100%);
         padding: 10px 14px;
+        font-size: 15px;
+        line-height: 1.45;
         background: #ffffff;
         border: 1px solid #e3e3e3;
         border-left: 4px solid var(--theme-color, #0c2340);
@@ -496,23 +604,17 @@ main .pub-title:hover {
         pointer-events: none;
     }
 
-    .pub-title:hover ~ .pub-digest,
-    .pub-title:focus-visible ~ .pub-digest {
+    .is-compact .pub:hover .pub-card,
+    .is-compact .pub:focus-within .pub-card {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
         transition: opacity 0.2s ease 0.15s, transform 0.2s ease 0.15s, visibility 0s linear 0.15s;
     }
-}
 
-.pub-tag {
-    --chip-color: #6c757d;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 0 7px;
-    border-radius: 999px;
-    color: #ffffff;
-    background: var(--chip-color);
+    .is-compact .pub-card .pub-tags {
+        margin-left: 6px;
+    }
 }
 
 /* On phones the branch lines don't fit: drop the graph and keep the theme tags */

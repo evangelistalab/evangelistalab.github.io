@@ -36,15 +36,22 @@
             <h1>Publications</h1>
             <p>Our papers, organized by research theme and drawn like a git history: each colored line is a line of
                 research, each dot is a paper, and horizontal links connect papers to the other themes they draw on. Select a theme
-                to see only its papers, and hover over a title to read a short summary. The full list is also on <a
+                to see only its papers. In the compact view, hover over a paper for its details and a short summary;
+                the detailed view shows everything at once. The full list is also on <a
                     rel="noreferrer noopener"
                     href="http://scholar.google.com/citations?hl=en&amp;user=-Fh9YDIAAAAJ&amp;view_op=list_works&amp;sortby=pubdate"
                     target="_blank">Google Scholar</a>.</p>
         </div>
         <div class="pub-section">
             <div class="pub-themes" id="pub-themes"></div>
-            <p class="pub-theme-description" id="pub-theme-description"></p>
-            <div class="pub-graph" id="pub-graph">
+            <div class="pub-toolbar">
+                <p class="pub-theme-description" id="pub-theme-description"></p>
+                <div class="pub-view-toggle" role="group" aria-label="Publication list view">
+                    <button type="button" data-view="compact">Compact</button>
+                    <button type="button" data-view="detailed">Detailed</button>
+                </div>
+            </div>
+            <div class="pub-graph is-compact" id="pub-graph">
                 <svg class="pub-lanes" aria-hidden="true"></svg>
                 <ol class="pub-list"></ol>
             </div>

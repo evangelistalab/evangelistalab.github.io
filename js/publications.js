@@ -1,13 +1,12 @@
 // Publications page: papers listed newest first, with a git-style graph on the
 // left. Each research theme is a colored branch line that runs from its first
 // to its latest paper; each paper is a dot on its main theme's branch, and
-// papers that also belong to other themes get a merge curve from those branches.
+// papers that also belong to other themes get horizontal links to those branches.
 
 import { THEMES, PUBLICATIONS } from './publications-data.js';
 
 const LANE_GAP = 14;        // horizontal spacing between branch lines (px)
 const LANE_PAD = 10;        // left padding before the first branch
-const DOT_OFFSET = 15;      // vertical position of a dot within its row (px)
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
 const themeById = Object.fromEntries(THEMES.map(t => [t.id, t]));
@@ -85,17 +84,27 @@ function renderList(papers) {
         const item = el('li', { class: 'pub' });
         item.dataset.themes = p.themes.join(' ');
         item.style.setProperty('--theme-color', themeById[p.themes[0]].color);
+        // One-line summary: title and journal
         const title = el('a', { class: 'pub-title', href: `https://doi.org/${p.doi}`, target: '_blank', rel: 'noreferrer noopener' }, p.title);
-        const venue = el('span', { class: 'pub-venue' }, `${p.venue}${p.preprint ? ' (preprint)' : ''}, ${p.year}`);
+        const line = el('div', { class: 'pub-line' });
+        line.append(title, el('span', { class: 'pub-journal' }, p.venue));
+
+        // Details card: full title, authors, citation, themes, and digest
+        const card = el('div', { class: 'pub-card' });
+        const citation = el('div', { class: 'pub-citation' });
+        citation.append(el('span', { class: 'pub-venue' }, `${p.venue}${p.preprint ? ' (preprint)' : ''}`), `, ${p.year}`);
         const tags = el('span', { class: 'pub-tags' });
         for (const id of p.themes) {
             const tag = el('span', { class: 'pub-tag' }, themeById[id].name);
             tag.style.setProperty('--chip-color', themeById[id].color);
             tags.append(tag);
         }
-        item.append(title, el('br'), authorsWithEmphasis(p.authors), el('br'), venue, tags);
+        citation.append(tags);
+        card.append(el('div', { class: 'pub-card-title' }, p.title), authorsWithEmphasis(p.authors), citation);
         // Plain-language digest written from the paper's abstract
-        if (p.digest) item.append(el('p', { class: 'pub-digest' }, p.digest));
+        if (p.digest) card.append(el('p', { class: 'pub-digest' }, p.digest));
+
+        item.append(line, card);
         list.append(item);
     }
 }
@@ -108,7 +117,11 @@ function drawGraph(papers) {
     graph.style.setProperty('--lanes-width', `${width}px`);
 
     const rows = [...list.querySelectorAll('.pub')];
-    const ys = rows.map(row => row.offsetTop + DOT_OFFSET);
+    // Dots sit at the vertical middle of each paper's title line
+    const ys = rows.map(row => {
+        const line = row.querySelector('.pub-line');
+        return row.offsetTop + line.offsetTop + line.offsetHeight / 2;
+    });
     svg.setAttribute('width', width);
     svg.setAttribute('height', list.offsetHeight);
     svg.replaceChildren();
@@ -139,6 +152,26 @@ function drawGraph(papers) {
         dot.append(svgEl('title', {}));
         dot.firstChild.textContent = themeById[main].name;
         svg.append(dot);
+    });
+}
+
+// Compact / Detailed view switch. The choice is remembered in this browser;
+// storage can be unavailable (private windows), so failures are ignored.
+const VIEW_KEY = 'evangelistalab.publications.view';
+const toggleButtons = [...document.querySelectorAll('.pub-view-toggle button')];
+
+function setView(view) {
+    graph.classList.toggle('is-compact', view === 'compact');
+    for (const b of toggleButtons) b.setAttribute('aria-pressed', String(b.dataset.view === view));
+}
+
+let savedView = null;
+try { savedView = localStorage.getItem(VIEW_KEY); } catch (_) { }
+setView(savedView === 'detailed' ? 'detailed' : 'compact');
+for (const b of toggleButtons) {
+    b.addEventListener('click', () => {
+        setView(b.dataset.view);
+        try { localStorage.setItem(VIEW_KEY, b.dataset.view); } catch (_) { }
     });
 }
 
