@@ -465,6 +465,14 @@ main .pub-title:hover {
     vertical-align: 1px;
 }
 
+.pub-digest {
+    max-width: 75ch;
+    margin: 4px 0 0;
+    font-size: 14px;
+    line-height: 1.45;
+    color: #555555;
+}
+
 .pub-tag {
     --chip-color: #6c757d;
     font-size: 12px;

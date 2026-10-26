@@ -93,6 +93,8 @@ function renderList(papers) {
             tags.append(tag);
         }
         item.append(title, el('br'), authorsWithEmphasis(p.authors), el('br'), venue, tags);
+        // Plain-language digest written from the paper's abstract
+        if (p.digest) item.append(el('p', { class: 'pub-digest' }, p.digest));
         list.append(item);
     }
 }
