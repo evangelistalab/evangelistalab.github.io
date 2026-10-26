@@ -372,6 +372,120 @@ footer p {
     scroll-margin-top: 70px;
 }
 
+/* Publications page: theme chips and a git-style graph next to the paper list */
+.pub-section {
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto 30px;
+    font-size: 16px;
+}
+
+.pub-themes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.pub-chip {
+    --chip-color: #0c2340;
+    font: inherit;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 4px 12px;
+    border: 2px solid var(--chip-color);
+    border-radius: 999px;
+    background: #ffffff;
+    color: #0c2340;
+    cursor: pointer;
+}
+
+.pub-chip[aria-pressed="true"] {
+    background: var(--chip-color);
+    color: #ffffff;
+}
+
+.pub-theme-description {
+    color: #4a4a4a;
+    min-height: 1.6em;
+}
+
+.pub-graph {
+    --lanes-width: 160px;
+    position: relative;
+}
+
+.pub-lanes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: visible;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 calc(var(--lanes-width) + 8px);
+    line-height: 1.5;
+}
+
+.pub-year {
+    margin: 22px 0 6px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #0c2340;
+}
+
+.pub {
+    padding: 6px 0 12px;
+}
+
+main .pub-title {
+    color: #0c2340;
+    font-size: 17px;
+}
+
+main .pub-title:hover {
+    color: #006a9e;
+}
+
+.pub-authors,
+.pub-venue {
+    color: #4a4a4a;
+}
+
+.pub-venue {
+    font-style: italic;
+}
+
+.pub-tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-left: 8px;
+    vertical-align: 1px;
+}
+
+.pub-tag {
+    --chip-color: #6c757d;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0 7px;
+    border-radius: 999px;
+    color: #ffffff;
+    background: var(--chip-color);
+}
+
+/* On phones the branch lines don't fit: drop the graph and keep the theme tags */
+@media (max-width: 700px) {
+    .pub-lanes {
+        display: none;
+    }
+
+    .pub-list {
+        padding-left: 0;
+    }
+}
+
 .course {
     box-sizing: border-box;
     width: 90%;

@@ -34,12 +34,23 @@
     <main>
         <div class="body">
             <h1>Publications</h1>
-            <p>For a full list of publications check out <a rel="noreferrer noopener"
+            <p>Our papers, organized by research theme and drawn like a git history: each colored line is a line of
+                research, each dot is a paper, and curves mark papers that bring two themes together. Select a theme
+                to see only its papers. The full list is also on <a rel="noreferrer noopener"
                     href="http://scholar.google.com/citations?hl=en&amp;user=-Fh9YDIAAAAJ&amp;view_op=list_works&amp;sortby=pubdate"
-                    target="_blank">Google Scholar</a></p>
+                    target="_blank">Google Scholar</a>.</p>
+        </div>
+        <div class="pub-section">
+            <div class="pub-themes" id="pub-themes"></div>
+            <p class="pub-theme-description" id="pub-theme-description"></p>
+            <div class="pub-graph" id="pub-graph">
+                <svg class="pub-lanes" aria-hidden="true"></svg>
+                <ol class="pub-list"></ol>
+            </div>
         </div>
     </main>
 </body>
 <script src="js/script.js"></script>
+<script type="module" src="js/publications.js"></script>
 
 </html>
